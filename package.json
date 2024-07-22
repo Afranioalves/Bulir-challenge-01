@@ -1,0 +1,19 @@
+{
+  "name": "bulir-challenge01",
+  "version": "1.0.0",
+  "description": "API RESTful para uma plataforma onde os clientes podem contratar prestadores de serviços",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "API",
+    "RESTFULL",
+    "BACK-END"
+  ],
+  "author": "Afrânio Alves",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.5.4"
+  }
+}
