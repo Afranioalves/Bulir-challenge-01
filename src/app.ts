@@ -2,6 +2,7 @@ import express, { NextFunction, Response, Request } from 'express'
 import logger from "morgan"
 import bodyParser from "body-parser";
 import cors from "cors";
+import database from './config/database';
 
 
 const app = express()
@@ -12,8 +13,16 @@ app.use(cors());
 
 
 app.use('/',(req:Request, res:Response)=>{
-    res.status(200).send({title:'Bulir challenge 001', api_version:'1.0.0', author:'Afrânio Alves'})
+    res.status(200).send({
+        title:'Bulir challenge 001', 
+        api_version:'1.0.0', 
+        author:'Afrânio Alves'
+    })
 })
+
+database.sync()
+.then(()=>{console.log("database connected successfully...")})
+.catch((error)=>console.log("error to connect database...", error));
 
 
 

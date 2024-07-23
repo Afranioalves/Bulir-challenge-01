@@ -9,7 +9,7 @@ export interface userSchema extends Model <InferAttributes<userSchema>, InferCre
     userType:string,
 }
 
-export interface userData{
+export interface userInput{
     id:string,
     fullName: string,
     NIF: string,
