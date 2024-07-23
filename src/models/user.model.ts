@@ -15,11 +15,13 @@ const users = database.define<userSchema>("users",{
     },
     email:{
         type:Sequelize.STRING(200),
-        allowNull: false, 
+        allowNull: false,
+        unique: true, 
     },
     NIF:{
         type:Sequelize.STRING(50),
-        allowNull: true, 
+        allowNull: true,
+        unique: true, 
     },
     password:{
         type:Sequelize.STRING(400),
