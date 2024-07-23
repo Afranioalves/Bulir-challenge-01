@@ -2,7 +2,7 @@ import Sequelize from "sequelize";
 import database from "../config/database";
 import { serviceSchema } from "../interfaces/service.interface";
 
-const services = database.define<serviceSchema>("accounts",{
+const services = database.define<serviceSchema>("services",{
     id:{
         type:Sequelize.STRING(400), 
         autoIncrement: false,

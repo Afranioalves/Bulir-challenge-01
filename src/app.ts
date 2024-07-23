@@ -5,6 +5,7 @@ import cors from "cors";
 import database from './config/database';
 import userRouter from './routers/user.router';
 import signInRouter from './routers/signIn.router';
+import serviceRouter from './routers/service.router';
 
 
 const prefix = '/api/v1'
@@ -17,6 +18,7 @@ app.use(cors());
 
 app.use(`${prefix}/user`, userRouter);
 app.use(`${prefix}/sign-in`, signInRouter);
+app.use(`${prefix}/service`, serviceRouter);
 
 
 app.use('/',(req:Request, res:Response)=>{

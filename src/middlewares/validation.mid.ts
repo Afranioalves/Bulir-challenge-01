@@ -15,3 +15,10 @@ export const signInValidation = [
     check('email').not().isEmpty().trim().escape().withMessage('campo email obrigatório'),
     check('password').not().isEmpty().trim().escape().withMessage('campo password obrigatório'), 
 ]
+
+
+export const createServiceValidation = [
+    check('title').not().isEmpty().trim().escape().withMessage('campo title obrigatório'),
+    check('description').not().isEmpty().trim().escape().withMessage('campo description obrigatório'),
+    check('price').not().isEmpty().trim().escape().withMessage('campo price obrigatório'), 
+]

@@ -8,7 +8,7 @@ const SECRET_KEY:any = process.env.JWT_SECRET_KEY
 export const Authorization = (req:Request, res:Response, next:NextFunction)=>{
     try{
         const auth = req.headers.authorization
-        if(!auth) return res.status(400).send({message:'Autorização obrigatória'}) 
+        if(!auth) return res.status(400).send({message:'Autenticação obrigatória'}) 
         const token = auth.split(' ')[1]
         const decode = jwt.verify(token,SECRET_KEY);
         req.body.user = decode;
