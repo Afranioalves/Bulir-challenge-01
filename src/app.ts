@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import database from './config/database';
 import userRouter from './routers/user.router';
+import signInRouter from './routers/signIn.router';
 
 
 const prefix = '/api/v1'
@@ -15,6 +16,7 @@ app.use(cors());
 
 
 app.use(`${prefix}/user`, userRouter);
+app.use(`${prefix}/sign-in`, signInRouter);
 
 
 app.use('/',(req:Request, res:Response)=>{

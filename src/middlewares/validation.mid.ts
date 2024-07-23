@@ -9,3 +9,9 @@ export const createUserValidation = [
     check('userType').not().isEmpty().trim().escape().withMessage('campo userType obrigatório'),
     
 ]
+
+
+export const signInValidation = [
+    check('email').not().isEmpty().trim().escape().withMessage('campo email obrigatório'),
+    check('password').not().isEmpty().trim().escape().withMessage('campo password obrigatório'), 
+]
