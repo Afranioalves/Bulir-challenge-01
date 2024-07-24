@@ -54,10 +54,13 @@ const create = async (req: Request, res: Response) => {
         
         res.status(201).send({
             message:'Serviço contratado com sucesso', 
-            content:{
+            service:{
                 service:resultService.title,
-                price:servicePrice,
-                provider:resultProvider.fullName
+                price:servicePrice
+            },
+            provider:{
+                name:resultProvider.fullName,
+                email:resultProvider.email
             }
         })
 
