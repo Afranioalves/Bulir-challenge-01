@@ -55,7 +55,7 @@ const findAll = async (req: Request, res: Response) => {
 }
 
 
-const deleteService = async (req: Request, res: Response) => {
+const enableAndDisableService = async (req: Request, res: Response) => {
 
     try {
         const {id} = req.body.user;
@@ -64,9 +64,11 @@ const deleteService = async (req: Request, res: Response) => {
         if(resultService == null) return res.status(404).send({ error: "Serviço não encontrado", message: "Serviço que pretende excluir, não existe" });
         
         if(resultService.ownerId != id) return res.status(401).send({ error: "Sem autorização", message: "Não tens autorização para excluir este serviço" });
-        resultService.status = false;
+        const serviceStatus =  resultService.status;
+        resultService.status = !resultService.status;
         await resultService.save();
-        res.status(200).send({ message:'Serviço excluido com sucesso'})
+        if(serviceStatus) return res.status(200).send({ message:'Serviço desactivado com sucesso, poderás activar futuramente'})
+        if(!serviceStatus) return  res.status(200).send({ message:'Serviço activo com sucesso, poderás desactivar futuramente'})
 
      
     } catch (error) {
@@ -78,8 +80,7 @@ const deleteService = async (req: Request, res: Response) => {
 
 
 
-
-const serviceController = { create, findAll, deleteService }
+const serviceController = { create, findAll, enableAndDisableService }
 export default serviceController
 
 
