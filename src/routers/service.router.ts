@@ -4,11 +4,10 @@ import { createServiceValidation } from "../middlewares/validation.mid";
 import { Authorization } from "../middlewares/auth.mid";
 const serviceRouter = express.Router();
 
-const { create, findAll, deleteService } = serviceController
+const { create, findAll, enableAndDisableService} = serviceController
 
 serviceRouter.post("/", Authorization, createServiceValidation, create);
 serviceRouter.get("/", Authorization, findAll);
-serviceRouter.delete("/:serviceId", Authorization, deleteService);
-
+serviceRouter.put("/:serviceId", Authorization,  enableAndDisableService);
 
 export default serviceRouter; 
