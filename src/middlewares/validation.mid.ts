@@ -1,4 +1,4 @@
-import {check} from "express-validator"
+import {check, body} from "express-validator"
 
 
 export const createUserValidation = [
@@ -21,4 +21,14 @@ export const createServiceValidation = [
     check('title').not().isEmpty().trim().escape().withMessage('campo title obrigatório'),
     check('description').not().isEmpty().trim().escape().withMessage('campo description obrigatório'),
     check('price').not().isEmpty().trim().escape().withMessage('campo price obrigatório'), 
+]
+
+export const createHireValidation = [
+    check('serviceId').not().isEmpty().trim().escape().withMessage('campo serviceId obrigatório'),
+    check('providerId').not().isEmpty().trim().escape().withMessage('campo providerId obrigatório'),
+]
+
+export const topUpAccountValidation = [
+    check('amount').not().isEmpty().trim().escape().withMessage('campo amount obrigatório'),
+    
 ]
