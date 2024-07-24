@@ -1,6 +1,6 @@
 import { Model, InferAttributes, InferCreationAttributes} from "sequelize";
 
-export interface transactionSchema extends Model <InferAttributes<transactionSchema>, InferCreationAttributes<transactionSchema>>{
+export interface hireSchema extends Model <InferAttributes<hireSchema>, InferCreationAttributes<hireSchema>>{
     id:string,
     serviceId:string
     costumerId: string,

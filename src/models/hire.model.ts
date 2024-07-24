@@ -1,8 +1,8 @@
 import Sequelize from "sequelize";
 import database from "../config/database";
-import { transactionSchema } from "../interfaces/hire.interface";
+import { hireSchema } from "../interfaces/hire.interface";
 
-const transactions = database.define<transactionSchema>("transactions",{
+const hires = database.define<hireSchema>("hires",{
     id:{
         type:Sequelize.STRING(400), 
         autoIncrement: false,
@@ -28,4 +28,4 @@ const transactions = database.define<transactionSchema>("transactions",{
 })
 
 
-export default transactions
+export default hires
