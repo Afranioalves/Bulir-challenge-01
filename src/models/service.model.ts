@@ -24,6 +24,10 @@ const services = database.define<serviceSchema>("services",{
     ownerId:{
         type:Sequelize.STRING(400),
         allowNull: false,
+    },
+    status:{
+        type:Sequelize.BOOLEAN,
+        allowNull: false,
     }
 })
 
