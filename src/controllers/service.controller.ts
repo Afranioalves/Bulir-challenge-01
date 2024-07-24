@@ -3,7 +3,7 @@ import { v4 as uuid } from "uuid";
 import { validationResult } from "express-validator";
 import { serviceInput } from "../interfaces/service.interface";
 import serviceRepository from "../repositories/service.repository";
-import { serviceOrderOutput } from "../utils/order";
+import { serviceOnwerOrderOutput, serviceOrderOutput } from "../utils/order";
 import { numberValidator } from "../libs/number-validator";
 
 const create = async (req: Request, res: Response) => {
@@ -47,7 +47,25 @@ const findAll = async (req: Request, res: Response) => {
         const result = await serviceRepository.findAll()
         if(result.length == 0) res.status(404).send({message:'Nenhum serviço encontrado'})
         const content = serviceOrderOutput(result)
-        res.status(200).send({size:result.length, content})
+        res.status(200).send({total:result.length, content})
+
+    } catch (error) {
+        console.error('Erro no processamento:', error);
+        res.status(500).send({error, message:'Erro ao carregar serviços' });
+    }
+
+}
+
+
+const findServiceByOnwnerId = async (req: Request, res: Response) => {
+
+    try {
+        const {id, userType} = req.body.user;
+        if(userType != "PRESTADOR") return res.status(401).send({error:'Sem permisão', message:'Tipo de conta não permite ter serviço'})
+        const result = await serviceRepository.findServiceByOnwnerId(id)
+        if(result.length == 0) res.status(404).send({message:'Nenhum serviço encontrado'})
+        const content = serviceOnwerOrderOutput(result)
+        res.status(200).send({total:result.length, services:content})
 
     } catch (error) {
         console.error('Erro no processamento:', error);
@@ -120,7 +138,7 @@ const update = async (req: Request, res: Response) => {
 
 
 
-const serviceController = { create, findAll, enableAndDisableService, update }
+const serviceController = { create, findAll, enableAndDisableService, update, findServiceByOnwnerId}
 export default serviceController
 
 
