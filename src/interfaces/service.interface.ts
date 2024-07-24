@@ -6,6 +6,7 @@ export interface serviceSchema extends Model <InferAttributes<serviceSchema>, In
     description: string,
     price:number,
     ownerId: string,
+    status:boolean,
 }
 
 export interface serviceInput{
@@ -14,4 +15,5 @@ export interface serviceInput{
     description: string,
     price:number,
     ownerId: string,
+    status:boolean,
 }
