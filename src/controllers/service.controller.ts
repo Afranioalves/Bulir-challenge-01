@@ -3,6 +3,7 @@ import { v4 as uuid } from "uuid";
 import { validationResult } from "express-validator";
 import { serviceInput } from "../interfaces/service.interface";
 import serviceRepository from "../repositories/service.repository";
+import { serviceOrderOutput } from "../utils/order";
 
 const create = async (req: Request, res: Response) => {
 
@@ -25,8 +26,7 @@ const create = async (req: Request, res: Response) => {
             ownerId: id,
         }
 
-        const result = await serviceRepository.create(service)
-        console.log(result)
+        await serviceRepository.create(service)
         res.status(201).send({message:'Serviço criado com sucesso'})
 
  
@@ -37,7 +37,23 @@ const create = async (req: Request, res: Response) => {
 
 }
 
-const serviceController = { create }
+
+const findAll = async (req: Request, res: Response) => {
+
+    try {
+        const result = await serviceRepository.findAll()
+        if(result.length == 0) res.status(404).send({message:'Nenhum serviço encontrado'})
+        const content = serviceOrderOutput(result)
+        res.status(200).send({size:result.length, content})
+
+    } catch (error) {
+        console.error('Erro no processamento:', error);
+        res.status(500).send({error, message:'Erro ao criar serviços' });
+    }
+
+}
+
+const serviceController = { create, findAll }
 export default serviceController
 
 
