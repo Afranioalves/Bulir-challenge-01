@@ -1,0 +1,310 @@
+{
+	"info": {
+		"_postman_id": "06c616c2-3eb6-40f5-a884-d3851560b630",
+		"name": "Bulir-challenge-001",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "cadastro",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fullName\" :\"Afrânio Alves\",\r\n    \"NIF\":\"009287512LA094\",\r\n    \"email\":\"afranio777alves@gmail.com\",\r\n    \"password\":\"senhasegura123\",\r\n    \"userType\":\"cliente\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/api/v1/user",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"fernando@gmail.com\",\r\n    \"password\":\"senha12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/api/v1/sign-in",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"sign-in"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "carregar conta",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/v1/account",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"account"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ver saldo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/v1/account",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"account"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ver contratações",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "criar serviço",
+			"request": {
+				"method": "POST",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "ver serviços",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM2NTMxMjgyLTBkY2EtNDIwYi1iZTYyLWQwODQ3NTA0OGZmYSIsInVzZXJUeXBlIjoiUFJFU1RBRE9SIiwiaWF0IjoxNzIxNzQzNjc5LCJleHAiOjE3MjIwMDI4Nzl9.oEa_uv01YRQ5FTIJ2sb43kJks19BLiuoVZbL0PvuBq8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/v1/service",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"service"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "contratar serviço",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM2NTMxMjgyLTBkY2EtNDIwYi1iZTYyLWQwODQ3NTA0OGZmYSIsInVzZXJUeXBlIjoiUFJFU1RBRE9SIiwiaWF0IjoxNzIxNzQzNjc5LCJleHAiOjE3MjIwMDI4Nzl9.oEa_uv01YRQ5FTIJ2sb43kJks19BLiuoVZbL0PvuBq8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"serviceId\": \"1233344444444\",\r\n    \"providerId\" :\"33444555555555\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/api/v1/hiring",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"hiring"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "desactivar/activar serviço",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM2NTMxMjgyLTBkY2EtNDIwYi1iZTYyLWQwODQ3NTA0OGZmYSIsInVzZXJUeXBlIjoiUFJFU1RBRE9SIiwiaWF0IjoxNzIxODE4NTQ5LCJleHAiOjE3MjIwNzc3NDl9.Y2oJadfiKiJkm80iMh4-AqLkM-kryCXeWn7OKzNWlMw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/v1/service/27afd93c-5f89-4b98-af29-82dc1e904a8a",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"service",
+						"27afd93c-5f89-4b98-af29-82dc1e904a8a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "actualizar serviço",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM2NTMxMjgyLTBkY2EtNDIwYi1iZTYyLWQwODQ3NTA0OGZmYSIsInVzZXJUeXBlIjoiUFJFU1RBRE9SIiwiaWF0IjoxNzIxODE4NTQ5LCJleHAiOjE3MjIwNzc3NDl9.Y2oJadfiKiJkm80iMh4-AqLkM-kryCXeWn7OKzNWlMw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"Serviço de carpinteiro\",\r\n    \"description\":\"Ofereço serviços completo de carpinteiro, como ocnstrução de mesa, caderões\",\r\n    \"price\":\"er20000\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/api/v1/service/update/adaldadadadaad",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"service",
+						"update",
+						"adaldadadadaad"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ver meus serviços",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Alterar tipo de usuario",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/v1/user",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"user"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "API_URL",
+			"value": "http://localhost:8080",
+			"type": "default"
+		}
+	]
+}

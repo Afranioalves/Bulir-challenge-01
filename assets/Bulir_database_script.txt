@@ -1,0 +1,60 @@
+// Criar banco de dados
+
+create database bullir_challenge001
+DEFAULT CHARACTER SET utf8;
+
+
+// Criar tabela users
+
+create table users(
+  id varchar(400) not null primary key,
+  fullName varchar(400) not null,
+  NIF varchar(50) not null unique,
+  email varchar(200) not null unique,
+  password varchar(400) not null,
+  userType enum('PRESTADOR','CLIENTE') not null,
+  createdAt timestamp default current_timestamp(),
+  updatedAt timestamp default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+
+// Criar tabela accounts
+
+create table accounts(
+  id varchar(400) not null primary key,
+  balance decimal(10,2) not null,
+  ownerId varchar(400) not null,
+  foreign key(ownerId) references users(id),
+  createdAt timestamp default current_timestamp(),
+  updatedAt timestamp default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+
+// Criar tabela services
+
+create table services(
+  id varchar(400) not null primary key,
+  title varchar(200) not null,
+  description varchar(500) not null,
+  price decimal(10,2) not null,
+  ownerId varchar(400) not null,
+  status boolean not null,
+  foreign key(ownerId) references users(id),
+  createdAt timestamp default current_timestamp(),
+  updatedAt timestamp default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+
+// Criar tabela hires
+
+create table hires(
+  id varchar(400) not null primary key,
+  serviceId varchar(400) not null,
+  costumerId varchar(400) not null,
+  providerId varchar(400) not null,
+  foreign key(costumerId) references users(id),
+  foreign key(providerId) references users(id),
+  foreign key(serviceId) references services(id),
+  createdAt timestamp default current_timestamp(),
+  updatedAt timestamp default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
