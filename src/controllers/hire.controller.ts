@@ -6,6 +6,7 @@ import hireRepository from "../repositories/hire.repository";
 import userRepository from "../repositories/user.repository";
 import accountRepository from "../repositories/account.repository";
 import { hireInput } from "../interfaces/hire.interface";
+import { hiringOrderOutput } from "../utils/order";
 
 const create = async (req: Request, res: Response) => {
 
@@ -16,7 +17,7 @@ const create = async (req: Request, res: Response) => {
 
         const {providerId, serviceId} = req.body
         const {id} = req.body.user;
-        const transactionId = uuid()
+        const hireId = uuid()
 
         const resultProvider = await userRepository.findUserById(providerId)
         if(resultProvider == null) return res.status(400).send({ error: "Prestador invalido", message: "Insira um id valido do prestador" });
@@ -39,7 +40,7 @@ const create = async (req: Request, res: Response) => {
         if(+balanceCostumer < +servicePrice ) return res.status(400).send({ error: "Saldo insuficiente", message: "O teu saldo é insuficiente para este serviço, carregue a tua conta volte a tentar" });
         
         const hiring:hireInput = {
-            id:transactionId,
+            id:hireId,
             serviceId:serviceId,
             costumerId:id,
             providerId:providerId,
@@ -73,7 +74,25 @@ const create = async (req: Request, res: Response) => {
 }
 
 
-const hireController = { create }
+const seeHires = async (req: Request, res: Response) => {
+
+    try {
+        const {id} = req.body.user;
+        const resultHires = await hireRepository.findAll(id);
+        if(resultHires.length == 0) res.status(404).send({message:'Nenhuma contratação encontrado'})
+        const content = hiringOrderOutput(resultHires)
+        res.status(200).send({total:resultHires.length, content})
+
+ 
+    } catch (error) {
+        console.error('Erro no processamento:', error);
+        res.status(500).send({error, message:'Erro a carregar contratação' });
+    }
+
+}
+
+
+const hireController = { create, seeHires }
 export default hireController
 
 
