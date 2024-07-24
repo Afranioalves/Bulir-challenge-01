@@ -59,7 +59,37 @@ const create = async (req: Request, res: Response) => {
 
 }
 
-const userController = { create }
+
+const becomeProvider = async (req: Request, res: Response) => {
+
+    try {
+
+        const {id, userType} = req.body.user;
+
+        if(userType == "PRESTADOR") return res.status(400).send({error:'Já és um Prestador', message:'O usúario selecionado já é um Prestador'})
+
+        const user = await userRepository.findUserById(id)
+        if(user == null) return res.status(404).send({ error: "Usuário não invalido", message: "Nenhum usúario encontrado, para ser Prestador" });
+
+        user.userType = "PRESTADOR"
+        await user.save();
+        res.status(200).send({
+            message:'Tipo de usúario alterado com sucesso, de Cliente para Prestador',
+            content:{
+                name: user.fullName,
+                userType: user.userType
+            }
+        })
+
+    } catch (error) {
+        console.error('Erro no processamento:', error);
+        res.status(500).send({error, message:'Erro a mudar de conta' });
+    }
+
+}
+
+const userController = { create, becomeProvider }
+
 export default userController
 
 
