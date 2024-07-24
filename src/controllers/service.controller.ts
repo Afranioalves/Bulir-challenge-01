@@ -48,12 +48,37 @@ const findAll = async (req: Request, res: Response) => {
 
     } catch (error) {
         console.error('Erro no processamento:', error);
-        res.status(500).send({error, message:'Erro ao criar serviços' });
+        res.status(500).send({error, message:'Erro ao carregar serviços' });
     }
 
 }
 
-const serviceController = { create, findAll }
+
+const deleteService = async (req: Request, res: Response) => {
+
+    try {
+        const {id} = req.body.user;
+        const {serviceId} = req.params
+        const resultService = await serviceRepository.findServiceById(serviceId)
+        if(resultService == null) return res.status(404).send({ error: "Serviço não encontrado", message: "Serviço que pretende excluir, não existe" });
+        
+        if(resultService.ownerId != id) return res.status(401).send({ error: "Sem autorização", message: "Não tens autorização para excluir este serviço" });
+    
+        await resultService.destroy();
+        res.status(200).send({message:'Serviço excluido com sucesso'})
+
+     
+    } catch (error) {
+        console.error('Erro no processamento:', error);
+        res.status(500).send({error, message:'Erro ao excluir serviços' });
+    }
+
+}
+
+
+
+
+const serviceController = { create, findAll, deleteService }
 export default serviceController
 
 
