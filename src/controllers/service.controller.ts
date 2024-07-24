@@ -24,6 +24,7 @@ const create = async (req: Request, res: Response) => {
             description,
             price,
             ownerId: id,
+            status:true
         }
 
         await serviceRepository.create(service)
@@ -63,9 +64,9 @@ const deleteService = async (req: Request, res: Response) => {
         if(resultService == null) return res.status(404).send({ error: "Serviço não encontrado", message: "Serviço que pretende excluir, não existe" });
         
         if(resultService.ownerId != id) return res.status(401).send({ error: "Sem autorização", message: "Não tens autorização para excluir este serviço" });
-    
-        await resultService.destroy();
-        res.status(200).send({message:'Serviço excluido com sucesso'})
+        resultService.status = false;
+        await resultService.save();
+        res.status(200).send({ message:'Serviço excluido com sucesso'})
 
      
     } catch (error) {
