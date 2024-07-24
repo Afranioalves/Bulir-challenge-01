@@ -16,6 +16,43 @@ services.belongsTo(users, {
 });
 
 
+users.hasMany(hires, {
+    constraints: true,
+    foreignKey: "id",
+  });
+
+hires.belongsTo(users, {
+    as: "provider",
+    constraints: true,
+    foreignKey: "providerId",
+});
+
+
+users.hasMany(hires, {
+    constraints: true,
+    foreignKey: "id",
+  });
+
+hires.belongsTo(users, {
+    as: "costumer",
+    constraints: true,
+    foreignKey: "costumerId",
+});
+
+services.hasMany(hires, {
+    constraints: true,
+    foreignKey: "id",
+  });
+
+hires.belongsTo(services, {
+    as: "service",
+    constraints: true,
+    foreignKey: "serviceId",
+});
+
+
+
+
 
 
 export default Models
