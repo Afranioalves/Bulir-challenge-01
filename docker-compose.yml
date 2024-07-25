@@ -33,6 +33,7 @@ services:
             - DATABASE_NAME=$DATABASE_NAME
             - DATABASE_USER=$DATABASE_USER
             - DATABASE_PASSWORD=$DATABASE_PASSWORD
+            - DATABASE_DIALECT=$DATABASE_DIALECT
         ports:
             - $SERVER_PORT:$SERVER_PORT
         stdin_open: true
