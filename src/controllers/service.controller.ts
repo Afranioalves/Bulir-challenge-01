@@ -63,7 +63,7 @@ const findServiceByOnwnerId = async (req: Request, res: Response) => {
         const {id, userType} = req.body.user;
         if(userType != "PRESTADOR") return res.status(401).send({error:'Sem permisão', message:'Tipo de conta não permite ter serviço'})
         const result = await serviceRepository.findServiceByOnwnerId(id)
-        if(result.length == 0) res.status(404).send({message:'Nenhum serviço encontrado'})
+        if(result.length == 0) return  res.status(404).send({message:'Nenhum serviço encontrado'})
         const content = serviceOnwerOrderOutput(result)
         res.status(200).send({total:result.length, services:content})
 
