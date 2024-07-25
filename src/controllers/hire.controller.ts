@@ -79,7 +79,7 @@ const seeHires = async (req: Request, res: Response) => {
     try {
         const {id} = req.body.user;
         const resultHires = await hireRepository.findAll(id);
-        if(resultHires.length == 0) res.status(404).send({message:'Nenhuma contratação encontrado'})
+        if(resultHires.length == 0) return res.status(404).send({message:'Nenhuma contratação encontrado'})
         const content = hiringOrderOutput(resultHires)
         res.status(200).send({total:resultHires.length, content})
 

@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"fullName\" :\"Afrânio Alves\",\r\n    \"NIF\":\"009287512LA094\",\r\n    \"email\":\"afranio777alves@gmail.com\",\r\n    \"password\":\"senhasegura123\",\r\n    \"userType\":\"cliente\"\r\n}",
+					"raw": "{\r\n    \"fullName\" :\"Fernando Jorge\",\r\n    \"NIF\":\"001287512LA090\",\r\n    \"email\":\"fernando@gmail.com\",\r\n    \"password\":\"senha12345\",\r\n    \"userType\":\"prestador\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -40,7 +40,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\":\"fernando@gmail.com\",\r\n    \"password\":\"senha12345\"\r\n}",
+					"raw": "{\r\n    \"email\":\"afranio777alves@gmail.com\",\r\n    \"password\":\"senhasegura123\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -64,8 +64,27 @@
 		{
 			"name": "carregar conta",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImZhNTI5ZDk1LTcyZmQtNDRmOS05MjcxLTdmODVhNjgxZTExMCIsInVzZXJUeXBlIjoiQ0xJRU5URSIsImlhdCI6MTcyMTgxNDEyMywiZXhwIjoxNzIyMDczMzIzfQ.DJlRdzl3xY-T5-qwsn_CIz74QWXRzWPQzq_-3pdYam4",
+							"type": "string"
+						}
+					]
+				},
 				"method": "PUT",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"amount\":\"5500\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "{{API_URL}}/api/v1/account",
 					"host": [
@@ -83,6 +102,16 @@
 		{
 			"name": "ver saldo",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImZhNTI5ZDk1LTcyZmQtNDRmOS05MjcxLTdmODVhNjgxZTExMCIsInVzZXJUeXBlIjoiQ0xJRU5URSIsImlhdCI6MTcyMTgxNDEyMywiZXhwIjoxNzIyMDczMzIzfQ.DJlRdzl3xY-T5-qwsn_CIz74QWXRzWPQzq_-3pdYam4",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -102,16 +131,67 @@
 		{
 			"name": "ver contratações",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM2NTMxMjgyLTBkY2EtNDIwYi1iZTYyLWQwODQ3NTA0OGZmYSIsInVzZXJUeXBlIjoiUFJFU1RBRE9SIiwiaWF0IjoxNzIxODE4NTQ5LCJleHAiOjE3MjIwNzc3NDl9.Y2oJadfiKiJkm80iMh4-AqLkM-kryCXeWn7OKzNWlMw",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/v1/hiring",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"hiring"
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "criar serviço",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhhMWRkOTZmLWNhNzItNGNjNi05ZWYwLTg1ZjZkNjllNDRhMSIsInVzZXJUeXBlIjoiUFJFU1RBRE9SIiwiaWF0IjoxNzIxODcyMDMxLCJleHAiOjE3MjIxMzEyMzF9.IoajHoQEpf_XaDLzSroPPraW8xlHwkQkm1Be7Oaf_zE",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
-				"header": []
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\" :\"Criação de mesas\",\r\n    \"description\":\"Criação de mesas personalizadas, de acordo com o seu gosto\",\r\n    \"price\":15000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/api/v1/service",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"service"
+					]
+				}
 			},
 			"response": []
 		},
@@ -152,7 +232,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM2NTMxMjgyLTBkY2EtNDIwYi1iZTYyLWQwODQ3NTA0OGZmYSIsInVzZXJUeXBlIjoiUFJFU1RBRE9SIiwiaWF0IjoxNzIxNzQzNjc5LCJleHAiOjE3MjIwMDI4Nzl9.oEa_uv01YRQ5FTIJ2sb43kJks19BLiuoVZbL0PvuBq8",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImZhNTI5ZDk1LTcyZmQtNDRmOS05MjcxLTdmODVhNjgxZTExMCIsInVzZXJUeXBlIjoiQ0xJRU5URSIsImlhdCI6MTcyMTc1Mjg0NiwiZXhwIjoxNzIyMDEyMDQ2fQ.lWohHbFC-_uKXY2elwlqjkNPtsCqaUdaj8fivf4edtg",
 							"type": "string"
 						}
 					]
@@ -161,7 +241,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"serviceId\": \"1233344444444\",\r\n    \"providerId\" :\"33444555555555\"\r\n}",
+					"raw": "{\r\n    \"serviceId\": \"27afd93c-5f89-4b98-af29-82dc1e904a8a\",\r\n    \"providerId\" :\"c6531282-0dca-420b-be62-d08475048ffa\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -229,7 +309,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"title\":\"Serviço de carpinteiro\",\r\n    \"description\":\"Ofereço serviços completo de carpinteiro, como ocnstrução de mesa, caderões\",\r\n    \"price\":\"er20000\"\r\n}",
+					"raw": "{\r\n    \"title\":\"Exemplo\",\r\n    \"description\":\"description Exemplo\",\r\n    \"price\":12000\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -237,7 +317,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{API_URL}}/api/v1/service/update/adaldadadadaad",
+					"raw": "{{API_URL}}/api/v1/service/update/717ef087-c455-422b-8492-5886812870ae",
 					"host": [
 						"{{API_URL}}"
 					],
@@ -246,7 +326,7 @@
 						"v1",
 						"service",
 						"update",
-						"adaldadadadaad"
+						"717ef087-c455-422b-8492-5886812870ae"
 					]
 				}
 			},
@@ -255,25 +335,51 @@
 		{
 			"name": "ver meus serviços",
 			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Alterar tipo de usuario",
-			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM2NTMxMjgyLTBkY2EtNDIwYi1iZTYyLWQwODQ3NTA0OGZmYSIsInVzZXJUeXBlIjoiUFJFU1RBRE9SIiwiaWF0IjoxNzIxODE4NTQ5LCJleHAiOjE3MjIwNzc3NDl9.Y2oJadfiKiJkm80iMh4-AqLkM-kryCXeWn7OKzNWlMw",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{API_URL}}/api/v1/user",
+					"raw": "{{API_URL}}/api/v1/service/my-services",
 					"host": [
 						"{{API_URL}}"
 					],
 					"path": [
 						"api",
 						"v1",
-						"user"
+						"service",
+						"my-services"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Alterar tipo de usuario",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/v1/user/become-provider",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"become-provider"
 					]
 				}
 			},

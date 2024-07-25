@@ -5,6 +5,7 @@ import { serviceInput } from "../interfaces/service.interface";
 import serviceRepository from "../repositories/service.repository";
 import { serviceOnwerOrderOutput, serviceOrderOutput } from "../utils/order";
 import { numberValidator } from "../libs/number-validator";
+import userRepository from "../repositories/user.repository";
 
 const create = async (req: Request, res: Response) => {
 
@@ -16,8 +17,12 @@ const create = async (req: Request, res: Response) => {
         const {title, description, price} = req.body
         const serviceId = uuid()
         const {id, userType} = req.body.user;
+
+        const user = await userRepository.findUserById(id)
+        if(user == null) return res.status(400).send({ error: "Usúario invalido", message: "Nenhum usúario encontrado para criar este serviço" });
         
         if(userType != "PRESTADOR") return res.status(401).send({error:'Sem permisão', message:'Actualize a sua conta para prestador'})
+        
         if(!numberValidator(price)) return res.status(400).send({ error: "Preço invalido", message: "Insira um preço valido para esse serviço" });
         
         const service: serviceInput = {
