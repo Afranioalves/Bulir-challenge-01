@@ -1,0 +1,39 @@
+services:
+    database:
+        image: mysql:8.0
+        container_name: Bulir-database
+        restart: unless-stopped
+        env_file: ./.env
+        environment:
+            - MYSQL_ROOT_PASSWORD=$DATABASE_PASSWORD
+            - MYSQL_DATABASE=$DATABASE_NAME
+            - MYSQL_TCP_PORT=$DATABASE_PORT
+        ports:
+            - $DATABASE_PORT:$DATABASE_PORT
+        expose:
+            - $DATABASE_PORT
+        healthcheck:
+            test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+            timeout: 5s
+            retries: 10
+    app:
+        depends_on:
+            database:
+                condition: service_healthy
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        working_dir: /usr/src/app
+        container_name: Bulir-api
+        restart: unless-stopped
+        env_file: ./.env
+        environment:
+            - DATABASE_HOST=database
+            - DATABASE_PORT=$DATABASE_PORT
+            - DATABASE_NAME=$DATABASE_NAME
+            - DATABASE_USER=$DATABASE_USER
+            - DATABASE_PASSWORD=$DATABASE_PASSWORD
+        ports:
+            - $SERVER_PORT:$SERVER_PORT
+        stdin_open: true
+        tty: true
