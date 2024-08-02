@@ -18,13 +18,14 @@ const signInController = async (req: Request, res: Response, next: NextFunction)
     try {
         const result: any = await userRepository.findUserByEmail(email);
         if (result == null) return res.status(401).send({ message: "Email ou senha está errada" });
-        const { id, userType } = result;
+        const { id, userType, fullName, NIF } = result;
+        const user ={id, userType, fullName, NIF, email}
 
         const match = await bcrypt.compare(password, result.password);
         if (!match) return res.status(401).send({ message: "Email ou senha está errada" });
 
         const token = jwt.sign({ id, userType }, SECRET_KEY, { expiresIn: "72h" });
-        return res.status(200).send({ message: "Autenticado com sucesso", token});
+        return res.status(200).send({ message: "Autenticado com sucesso", token, user});
     } catch (error) {
         res.status(500).send({ message: error });
     }
