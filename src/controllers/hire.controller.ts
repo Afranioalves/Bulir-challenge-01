@@ -37,7 +37,7 @@ const create = async (req: Request, res: Response) => {
         const balanceProvider:number = accountProvider.balance;
         const servicePrice:number = resultService.price;
 
-        if(+balanceCostumer < +servicePrice ) return res.status(400).send({ error: "Saldo insuficiente", message: "O teu saldo é insuficiente para este serviço, carregue a tua conta volte a tentar" });
+        if(+balanceCostumer < +servicePrice ) return res.status(400).send({ error: "Saldo insuficiente", message: "O teu saldo é insuficiente" });
         
         const hiring:hireInput = {
             id:hireId,

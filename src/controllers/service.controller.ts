@@ -14,7 +14,7 @@ const create = async (req: Request, res: Response) => {
         const error = validationResult(req);
         if (!error.isEmpty()) return res.status(400).send({ message: error.array() });
 
-        const {title, description, price} = req.body
+        const {title, description, price, category} = req.body
         const serviceId = uuid()
         const {id, userType} = req.body.user;
 
@@ -31,6 +31,7 @@ const create = async (req: Request, res: Response) => {
             description,
             price,
             ownerId: id,
+            category,
             status:true
         }
 
@@ -50,7 +51,7 @@ const findAll = async (req: Request, res: Response) => {
 
     try {
         const result = await serviceRepository.findAll()
-        if(result.length == 0) return res.status(404).send({message:'Nenhum serviço encontrado'})
+        if(result.length == 0) return res.status(404).send({message:'Nenhum serviço encontrado', content:[]})
         const content = serviceOrderOutput(result)
         res.status(200).send({total:result.length, content})
 
@@ -92,8 +93,8 @@ const enableAndDisableService = async (req: Request, res: Response) => {
         const serviceStatus =  resultService.status;
         resultService.status = !resultService.status;
         await resultService.save();
-        if(serviceStatus) return res.status(200).send({ message:'Serviço desactivado com sucesso, poderás activar futuramente'})
-        if(!serviceStatus) return  res.status(200).send({ message:'Serviço activo com sucesso, poderás desactivar futuramente'})
+        if(serviceStatus) return res.status(200).send({ message:'Serviço desactivado com sucesso'})
+        if(!serviceStatus) return  res.status(200).send({ message:'Serviço activo com sucesso'})
 
      
     } catch (error) {

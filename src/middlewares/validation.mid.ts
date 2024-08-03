@@ -20,7 +20,8 @@ export const signInValidation = [
 export const createServiceValidation = [
     check('title').not().isEmpty().trim().escape().withMessage('campo title obrigatório'),
     check('description').not().isEmpty().trim().escape().withMessage('campo description obrigatório'),
-    check('price').not().isEmpty().trim().escape().withMessage('campo price obrigatório'), 
+    check('price').not().isEmpty().trim().escape().withMessage('campo price obrigatório'),
+    check('category').not().isEmpty().trim().escape().withMessage('campo category obrigatório'),  
 ]
 
 export const createHireValidation = [

@@ -17,6 +17,10 @@ const services = database.define<serviceSchema>("services",{
         type:Sequelize.STRING(500), 
         allowNull: false, 
     },
+    category:{
+        type:Sequelize.STRING(200), 
+        allowNull: false, 
+    },
     price:{
         type:Sequelize.DECIMAL(10,2),
         allowNull: false, 

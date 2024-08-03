@@ -5,6 +5,7 @@ export const serviceOrderOutput = (data:Array<object>) =>{
             title: service.title,
             description: service.description,
             price: service.price,
+            category:service.category,
             createdAt:service.createdAt,
             provider:{
                 providerId:service.user.id,
